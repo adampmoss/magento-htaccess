@@ -55,19 +55,6 @@
 	RewriteRule .* index.php [L]
 </IfModule>
 
-
-##### mod_deflate compresses your output to lower the file size being sent to the client #####
-
-<IfModule mod_deflate.c>
-	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
-	BrowserMatch ^Mozilla/4 gzip-only-text/html
-	BrowserMatch ^Mozilla/4\.0[678] no-gzip
-	BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
-	SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
-	Header append Vary User-Agent env=!dont-vary
-	php_flag zlib.output_compression on
-</IfModule>
-
 <Files *.php>
 	SetOutputFilter DEFLATE 
 </Files>
